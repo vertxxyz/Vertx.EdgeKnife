@@ -9,6 +9,13 @@ Adds a "knife" to Shader Graph and VFX Graph.
 Hold <kbd>Ctrl Right-mouse</kbd> to cut edges.  
 Hold <kbd>Shift Right-mouse</kbd> to insert redirect nodes.  
 
+## Tested versions
+
+| Unity       | Shader Graph/VFX Graph |
+|-------------|------------------------|
+| 2022.3.12f1 | 14.0.09                |
+| 6000.0.8f1  | 17.0.03                |
+
 ## Installation
 [![openupm](https://img.shields.io/npm/v/com.vertx.edge-knife?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.vertx.edge-knife/)
   
