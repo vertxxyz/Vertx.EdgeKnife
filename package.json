@@ -1,0 +1,16 @@
+{
+  "name": "com.vertx.edge-knife",
+  "displayName": "Edge Knife",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Edge tool for Shader Graph/VFX Graph.\n\n★ Donations help support the development of packages like these ★\n",
+  "author": {
+    "name": "Vertx",
+    "url": "https://github.com/vertxxyz"
+  },
+  "changelogUrl": "https://github.com/vertxxyz/Vertx.EdgeKnife/blob/main/CHANGELOG.md",
+  "documentationUrl": "https://github.com/vertxxyz/Vertx.EdgeKnife",
+  "keywords": [],
+  "category": "Tools",
+  "dependencies": {}
+}
