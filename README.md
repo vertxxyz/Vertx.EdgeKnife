@@ -4,6 +4,7 @@ Adds a "knife" to Shader Graph and VFX Graph.
 
 [![Edge Knife](https://vertx.xyz/Images/EdgeKnife/edge-knife.gif)](https://vertx.xyz/Images/EdgeKnife/edge-knife.mp4)
 
+> Like Fruit Ninja but without the fruit or ninja
 
 ## Usage
 Hold <kbd>Ctrl Right-mouse</kbd> to cut edges.  
