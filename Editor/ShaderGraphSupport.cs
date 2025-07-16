@@ -12,8 +12,6 @@ namespace Vertx.EdgeKnife.Editor
 {
 	internal static class ShaderGraphSupport
 	{
-		private static readonly Dictionary<MaterialGraphEditWindow, EdgeKnifeManipulator> s_windowsToManipulators = new();
-		
 		public static bool TryAddKnifeToWindow(EditorWindow window)
 		{
 			// ReSharper disable once Unity.NoNullPatternMatching
@@ -28,12 +26,14 @@ namespace Vertx.EdgeKnife.Editor
 				return true;
 			}
 
-			if (!s_windowsToManipulators.TryGetValue(graphWindow, out EdgeKnifeManipulator manipulator))
-				s_windowsToManipulators.Add(graphWindow, manipulator = new EdgeKnifeManipulator(graphView, CreateRedirectFromKnife));
-			else
-				graphView.RemoveManipulator(manipulator);
+			if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClass))
+			{
+				// Already has a manipulator.
+				return true;
+			}
 			
-			graphView.AddManipulator(manipulator);
+			graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClass);
+			graphView.AddManipulator(new EdgeKnifeManipulator(graphView, CreateRedirectFromKnife));
 
 			return true;
 

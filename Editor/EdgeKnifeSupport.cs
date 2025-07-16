@@ -8,6 +8,8 @@ namespace Vertx.EdgeKnife.Editor
 	[InitializeOnLoad]
 	internal static class EdgeKnifeSupport
 	{
+		public const string HasEdgeKnifeUssClass = "--hasEdgeKnife";
+		
 		static EdgeKnifeSupport()
 		{
 			TryInitializeFocusedWindow();
@@ -56,6 +58,12 @@ namespace Vertx.EdgeKnife.Editor
 			if (VfxGraphSupport.TryAddKnifeToWindow(window))
 			{
 				return;
+			}
+#endif
+#if HAS_GRAPH_TOOLKIT
+			if (GraphToolkitSupport.TryAddKnifeToWindow(window))
+			{
+
 			}
 #endif
 		}

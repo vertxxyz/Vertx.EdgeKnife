@@ -1,6 +1,6 @@
 # Vertx.EdgeKnife
 
-Adds a "knife" to Shader Graph and VFX Graph.
+Adds a "knife" to Shader Graph, VFX Graph, and Graph Toolkit windows.
 
 [![Edge Knife](https://vertx.xyz/Images/EdgeKnife/edge-knife.gif)](https://vertx.xyz/Images/EdgeKnife/edge-knife.mp4)
 
@@ -16,6 +16,7 @@ Hold <kbd>Shift Right-mouse</kbd> to insert redirect nodes.
 |-------------|------------------------|
 | 2022.3.12f1 | 14.0.09                |
 | 6000.0.8f1  | 17.0.03                |
+| 6000.2.0b8  | 17.0.03                |
 
 ## Installation
 [![openupm](https://img.shields.io/npm/v/com.vertx.edge-knife?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.vertx.edge-knife/)

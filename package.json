@@ -1,7 +1,7 @@
 {
   "name": "com.vertx.edge-knife",
   "displayName": "Edge Knife",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2022.3",
   "description": "Edge tool for Shader Graph/VFX Graph.\n\n★ Donations help support the development of packages like these ★\n",
   "author": {

@@ -13,8 +13,6 @@ namespace Vertx.EdgeKnife.Editor
 {
 	internal static class VfxGraphSupport
 	{
-		private static readonly Dictionary<EditorWindow, EdgeKnifeManipulator> s_windowsToManipulators = new();
-
 		private static readonly HashSet<Type> s_supportedRedirectTypes = new InlineTypeProvider()
 #if VFX_17_0_1_OR_NEWER
 			.GetVariants()
@@ -37,14 +35,16 @@ namespace Vertx.EdgeKnife.Editor
 				EdgeKnifeSupport.TryAddKnifeToWindowAfterDelay(window);
 				return true;
 			}
-
-			if (!s_windowsToManipulators.TryGetValue(window, out EdgeKnifeManipulator manipulator))
-				s_windowsToManipulators.Add(window, manipulator = new EdgeKnifeManipulator(graphView, CreateRedirectFromKnife));
-			else
-				graphView.RemoveManipulator(manipulator);
-
-			graphView.AddManipulator(manipulator);
-
+			
+			if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClass))
+			{
+				// Already has a manipulator.
+				return true;
+			}
+			
+			graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClass);
+			graphView.AddManipulator(new EdgeKnifeManipulator(graphView, CreateRedirectFromKnife));
+			
 			return true;
 
 			void CreateRedirectFromKnife(Vector2 position, IEnumerable<Edge> edges)
