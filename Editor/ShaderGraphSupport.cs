@@ -26,13 +26,13 @@ namespace Vertx.EdgeKnife.Editor
 				return true;
 			}
 
-			if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClass))
+			if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClassName))
 			{
 				// Already has a manipulator.
 				return true;
 			}
 			
-			graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClass);
+			graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClassName);
 			graphView.AddManipulator(new EdgeKnifeManipulator(graphView, CreateRedirectFromKnife));
 
 			return true;

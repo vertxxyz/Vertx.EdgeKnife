@@ -8,16 +8,14 @@ using UnityEngine.UIElements;
 
 namespace Vertx.EdgeKnife.Editor
 {
-	/// <summary>
-	/// A <see cref="Manipulator"/> for <see cref="GraphView"/> that adds a path-drawing edge manipulation tool.
-	/// Ctrl+Right-Click drag will delete edges, Shift+Right-Click drag creates an edge redirect node.
-	/// </summary>
-	public sealed class EdgeKnifeManipulator : EdgeKnifeManipulatorBase
+	/// <inheritdoc />
+	/// Used with <see cref="GraphView"/>.
+	public sealed class EdgeKnifeManipulator : KnifeManipulatorBase
 	{
 		private readonly GraphView _graphView;
 		private readonly Action<Vector2, IEnumerable<Edge>>? _createRedirect;
 
-		protected override bool SupportsRedirects => _createRedirect != null;
+		protected override bool SupportsAdditive => _createRedirect != null;
 
 		public EdgeKnifeManipulator(GraphView graphView, Action<Vector2, IEnumerable<Edge>>? createRedirect)
 		{
@@ -40,7 +38,7 @@ namespace Vertx.EdgeKnife.Editor
 					Dictionary<Port, List<(Edge, Vector2)>> edgesByDestination = new();
 					foreach ((Edge edge, Vector2 intersection) edgeIntersection in edgeIntersections)
 					{
-						if (!edgesByDestination.TryGetValue(edgeIntersection.edge.output, out List<(Edge, Vector2)>? list))
+						if (!edgesByDestination.TryGetValue(edgeIntersection.edge.output, out List<(Edge, Vector2)> list))
 						{
 							edgesByDestination.Add(edgeIntersection.edge.output, list = new List<(Edge, Vector2)>());
 						}
@@ -105,17 +103,18 @@ namespace Vertx.EdgeKnife.Editor
 					}
 
 					// Check the individual render points segments.
-					var renderPoints = (List<Vector2>)renderPointsField.GetValue(edge.edgeControl);
+					EdgeControl edgeControl = edge.edgeControl;
+					var renderPoints = (List<Vector2>)renderPointsField.GetValue(edgeControl);
 					if (renderPoints.Count < 2)
 						continue;
 
 					int earliestSegment = points.Count - 1;
 					(Edge edge, Vector2 intersection)? result = null;
 
-					Vector2 a = edge.edgeControl.ChangeCoordinatesTo(element, renderPoints[0]);
+					Vector2 a = edgeControl.ChangeCoordinatesTo(element, renderPoints[0]);
 					for (var i = 0; i < renderPoints.Count - 1; i++)
 					{
-						Vector2 b = edge.edgeControl.ChangeCoordinatesTo(element, renderPoints[i + 1]);
+						Vector2 b = edgeControl.ChangeCoordinatesTo(element, renderPoints[i + 1]);
 						// Conservative check per-segment.
 						if (!RectUtils.IntersectsSegment(pointsBounds, a, b))
 						{

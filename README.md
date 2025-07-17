@@ -1,14 +1,14 @@
 # Vertx.EdgeKnife
 
-Adds a "knife" to Shader Graph, VFX Graph, and Graph Toolkit windows.
+Adds a "knife" to Shader Graph, VFX Graph, and Graph Toolkit[^1] windows.
 
 [![Edge Knife](https://vertx.xyz/Images/EdgeKnife/edge-knife.gif)](https://vertx.xyz/Images/EdgeKnife/edge-knife.mp4)
 
 > Like Fruit Ninja but without the fruit or ninja
 
 ## Usage
-Hold <kbd>Ctrl Right-mouse</kbd> to cut edges.  
-Hold <kbd>Shift Right-mouse</kbd> to insert redirect nodes.  
+Hold <kbd>Ctrl</kbd><kbd>Right Mouse</kbd> to cut edges/wires.  
+Hold <kbd>Shift</kbd><kbd>Right Mouse</kbd> to insert redirect/portal nodes.  
 
 ## Tested versions
 
@@ -43,3 +43,5 @@ Hold <kbd>Shift Right-mouse</kbd> to insert redirect nodes.
 </td></tr></table>
   
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z42ZYHB)
+
+[^1]: Graph Toolkit has its own freeform select and deletion bound to <kbd>Shift</kbd><kbd>Left Mouse</kbd> and <kbd>Alt</kbd><kbd>Shift</kbd><kbd>Left Mouse</kbd>.

@@ -10,7 +10,7 @@ namespace Vertx.EdgeKnife.Editor
 	/// A <see cref="Manipulator"/> for graphs that adds a path-drawing edge manipulation tool.
 	/// Ctrl+Right-Click drag will delete edges, Shift+Right-Click drag creates an edge redirect node.
 	/// </summary>
-	public abstract class EdgeKnifeManipulatorBase : Manipulator
+	public abstract class KnifeManipulatorBase : Manipulator
 	{
 		protected enum Mode
 		{
@@ -24,9 +24,9 @@ namespace Vertx.EdgeKnife.Editor
 		private int _targetPointerId;
 		private readonly EdgeKnifeElement _element = new();
 		
-		protected abstract bool SupportsRedirects { get; }
+		protected abstract bool SupportsAdditive { get; }
 
-		protected EdgeKnifeManipulatorBase()
+		protected KnifeManipulatorBase()
 		{
 			_element.RegisterCallback<PointerDownEvent>(OnPointerDown);
 			_element.RegisterCallback<PointerMoveEvent>(OnPointerMove);
@@ -70,7 +70,7 @@ namespace Vertx.EdgeKnife.Editor
 			switch (evt.modifiers)
 			{
 				case EventModifiers.Shift:
-					if (!SupportsRedirects)
+					if (!SupportsAdditive)
 					{
 						// No logic if callback isn't provided.
 						return;

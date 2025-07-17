@@ -17,15 +17,20 @@ namespace Vertx.EdgeKnife.Editor
 			var hasManipulator = false;
 			foreach (GraphView graphView in graphViewEditorWindow.GraphViews)
 			{
+				if (graphView == null)
+				{
+					continue;
+				}
+				
 				hasManipulator = true;
-				if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClass))
+				if (graphView.ClassListContains(EdgeKnifeSupport.HasEdgeKnifeUssClassName))
 				{
 					// Already has a manipulator.
 					continue;
 				}
 
-				graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClass);
-				graphView.AddManipulator(new GraphToolkitEdgeKnifeManipulator(graphView));
+				graphView.AddToClassList(EdgeKnifeSupport.HasEdgeKnifeUssClassName);
+				graphView.AddManipulator(new WireKnifeManipulator(graphView));
 			}
 
 			if (!hasManipulator)

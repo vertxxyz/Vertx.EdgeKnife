@@ -8,7 +8,7 @@ namespace Vertx.EdgeKnife.Editor
 	[InitializeOnLoad]
 	internal static class EdgeKnifeSupport
 	{
-		public const string HasEdgeKnifeUssClass = "--hasEdgeKnife";
+		public const string HasEdgeKnifeUssClassName = "--hasEdgeKnife";
 		
 		static EdgeKnifeSupport()
 		{
@@ -63,7 +63,8 @@ namespace Vertx.EdgeKnife.Editor
 #if HAS_GRAPH_TOOLKIT
 			if (GraphToolkitSupport.TryAddKnifeToWindow(window))
 			{
-
+				// ReSharper disable once RedundantJumpStatement
+				return;
 			}
 #endif
 		}
