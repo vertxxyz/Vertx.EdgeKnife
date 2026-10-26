@@ -1,7 +1,10 @@
-﻿#if HAS_VFX_GRAPH
+﻿#nullable enable
+
+#if HAS_VFX_GRAPH
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Scripting.LifecycleManagement;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.VFX;
@@ -11,9 +14,14 @@ using UnityEngine.UIElements;
 
 namespace Vertx.EdgeKnife.Editor
 {
+#if UNITY_6000_7_OR_NEWER
+	[NoAutoStaticsCleanup]
+#endif
 	internal static class VfxGraphSupport
 	{
-		private static readonly HashSet<Type> s_supportedRedirectTypes = new InlineTypeProvider()
+		private static HashSet<Type>? s_supportedRedirectTypes;
+		
+		private static HashSet<Type> SupportedRedirectTypes => s_supportedRedirectTypes ?? new InlineTypeProvider()
 #if VFX_17_0_1_OR_NEWER
 			.GetVariants()
 #else
@@ -49,7 +57,7 @@ namespace Vertx.EdgeKnife.Editor
 
 			void CreateRedirectFromKnife(Vector2 position, IEnumerable<Edge> edges)
 			{
-				VFXNodeController controller = null;
+				VFXNodeController? controller = null;
 				foreach (Edge edge in edges)
 				{
 					if (edge is not VFXDataEdge vfxEdge)
@@ -59,7 +67,7 @@ namespace Vertx.EdgeKnife.Editor
 					VFXDataAnchorController inputSlot = vfxEdge.controller.input;
 					Type type = inputSlot.portType ?? outputSlot.portType;
 
-					if (!s_supportedRedirectTypes.Contains(type))
+					if (!SupportedRedirectTypes.Contains(type))
 						continue;
 
 					if (controller == null)

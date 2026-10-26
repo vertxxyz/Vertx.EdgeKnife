@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,7 +19,7 @@ namespace Vertx.EdgeKnife.Editor
 
 		protected override bool SupportsAdditive => _createRedirect != null;
 
-		public EdgeKnifeManipulator(GraphView graphView, Action<Vector2, IEnumerable<Edge>>? createRedirect)
+		public EdgeKnifeManipulator(GraphView graphView, Action<Vector2, IEnumerable<Edge>> createRedirect)
 		{
 			_graphView = graphView;
 			_createRedirect = createRedirect;

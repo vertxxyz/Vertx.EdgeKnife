@@ -1,4 +1,6 @@
-﻿#if HAS_GRAPH_TOOLKIT
+﻿#nullable enable
+
+#if HAS_GRAPH_TOOLKIT
 using System;
 using System.Collections.Generic;
 using System.Linq;

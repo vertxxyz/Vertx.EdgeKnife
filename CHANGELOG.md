@@ -8,5 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Support for Graph Toolkit windows.
 
+### Improved
+- Prevented some code from unecessarily running on domain reload.
+
 ## [1.0.0]
 - Initial release.

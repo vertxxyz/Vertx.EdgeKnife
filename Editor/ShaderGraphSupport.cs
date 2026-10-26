@@ -1,4 +1,6 @@
-﻿#if HAS_SHADER_GRAPH
+﻿#nullable enable
+
+#if HAS_SHADER_GRAPH
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Graphing;
@@ -18,7 +20,7 @@ namespace Vertx.EdgeKnife.Editor
 			if (window is not MaterialGraphEditWindow graphWindow)
 				return false;
 
-			MaterialGraphView graphView = graphWindow.graphEditorView?.graphView;
+			MaterialGraphView? graphView = graphWindow.graphEditorView?.graphView;
 
 			if (graphView == null)
 			{
@@ -40,7 +42,7 @@ namespace Vertx.EdgeKnife.Editor
 			void CreateRedirectFromKnife(Vector2 position, IEnumerable<Edge> edges)
 			{
 				position = graphView.contentViewContainer.LocalToWorld(position);
-				RedirectNodeData redirectNode = null;
+				RedirectNodeData? redirectNode = null;
 				foreach (Edge edge in edges)
 				{
 					if (redirectNode == null)
@@ -66,7 +68,7 @@ namespace Vertx.EdgeKnife.Editor
 			// If they are in the same group we also add in the Redirect Node
 			// var groupGuidOutputNode = graph.GetNodeFromGuid(outputSlot.slotReference.nodeGuid).groupGuid;
 			// var groupGuidInputNode = graph.GetNodeFromGuid(inputSlot.slotReference.nodeGuid).groupGuid;
-			GroupData group = null;
+			GroupData? group = null;
 			if (outputSlot.owner.group == inputSlot.owner.group)
 			{
 				group = inputSlot.owner.group;
